@@ -35,6 +35,11 @@ public class Payment {
     private PaymentStatus status = PaymentStatus.EN_ATTENTE;
 
     private LocalDateTime datePaiement;
-
     private LocalDateTime dateEncaissement;
+
+    private String recu;
+    private String numeroCheque;
+    private String banque;
+    private LocalDateTime chequeEcheance;
+    private String reference;
 }
