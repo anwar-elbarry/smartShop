@@ -28,7 +28,7 @@ public class Product {
     private BigDecimal prixUnitaire;
 
     @Column(nullable = false)
-    private Integer stockDispo;
+    private Integer stock;
 
     @Column(nullable = false)
     private boolean isDeleted = false;
