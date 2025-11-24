@@ -4,6 +4,7 @@ import org.example.smartshop.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrderResponse {
     private Long id;
@@ -19,5 +20,5 @@ public class OrderResponse {
     private BigDecimal totalTTC;
     private BigDecimal montantRestant; // Important pour savoir si on peut valider
 
-    private List<OrderItemResponseDTO> items;
+    private List<OrderResponse> items;
 }
