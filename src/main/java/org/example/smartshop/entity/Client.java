@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.example.smartshop.enums.CustomerTier;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -33,7 +34,7 @@ public class Client extends User{
     private CustomerTier customerTier = CustomerTier.BASIC;
 
     private Integer totalOrders = 0;
-    private Double totalSpent = 0.0;
+    private BigDecimal totalSpent = BigDecimal.valueOf(0.0);
 
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
     private List<Order> commandHistory;
