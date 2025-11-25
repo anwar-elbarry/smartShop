@@ -11,7 +11,7 @@ import java.util.List;
 public class OrderRequest {
 
     @NotNull(message = "L'ID du client est requis")
-    private Long clientId;
+    private String clientId;
 
     @NotEmpty(message = "La commande doit contenir au moins un article")
     private List<OrderRequest> items;

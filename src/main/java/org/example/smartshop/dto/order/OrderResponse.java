@@ -11,16 +11,16 @@ import java.util.List;
 @Data
 @Builder
 public class OrderResponse {
-    private Long id;
-    private Long clientId;
+    private String id;
+    private String clientId;
     private String clientName; // Utile pour l'affichage
     private LocalDateTime date;
-    private OrderStatus status;
+    private OrderStatus statut;
 
     // Détails financiers calculés
-    private BigDecimal sousTotalHT;
+    private BigDecimal sousTotalHt;
     private BigDecimal montantRemise; // Fidélité + Promo
-    private BigDecimal montantTVA;
+    private BigDecimal tva;
     private BigDecimal totalTTC;
     private BigDecimal montantRestant; // Important pour savoir si on peut valider
 
