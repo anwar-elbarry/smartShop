@@ -28,7 +28,7 @@ public class OrderItem {
     private Order order;
 
     @Column(nullable = false)
-    private Integer quantite;
+    private Integer quantity;
 
     @Column(nullable = false)
     private BigDecimal prixUnitaire;
