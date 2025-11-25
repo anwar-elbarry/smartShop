@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Data
 public class PaymentRequest {
     @NotNull
-    private String OrderId;
+    private String orderId;
 
     @NotNull
     private Integer numeroPaiement;
