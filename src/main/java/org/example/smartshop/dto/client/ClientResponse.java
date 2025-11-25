@@ -10,9 +10,9 @@ import java.math.BigDecimal;
 @Data
 public class ClientResponse {
     private String id;
-    private String nom;
+    private String name;
     private String email;
-    private CustomerTier tier;
+    private CustomerTier customerTier;
     private Integer totalOrders;
     private BigDecimal totalSpent;
 }

@@ -8,7 +8,7 @@ import org.example.smartshop.enums.UserRole;
 @Data
 public class ClientRequest {
     @NotBlank(message = "Le nom est requis")
-    private String nom;
+    private String name;
 
     @NotBlank(message = "L'email est requis")
     @Email(message = "Format d'email invalide")
