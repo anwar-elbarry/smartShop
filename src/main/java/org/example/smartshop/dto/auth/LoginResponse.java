@@ -4,7 +4,7 @@ import lombok.Builder;
 import org.example.smartshop.enums.UserRole;
 
 @Builder
-public class loginResponse {
+public class LoginResponse {
     private String id;
     private String username;
     private UserRole role;
