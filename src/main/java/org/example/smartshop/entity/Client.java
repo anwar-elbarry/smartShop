@@ -23,7 +23,7 @@ import java.util.List;
 public class Client extends User{
 
     @Column(nullable = false)
-    private String nom;
+    private String name;
 
     @Column(nullable = false,unique = true)
     @NotBlank(message = "L'email ne peut pas être vide")
