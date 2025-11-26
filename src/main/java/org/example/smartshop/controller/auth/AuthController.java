@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.example.smartshop.dto.auth.LoginRequest;
 import org.example.smartshop.dto.auth.LoginResponse;
+import org.example.smartshop.dto.auth.RegisterRequest;
 import org.example.smartshop.entity.User;
 import org.example.smartshop.service.Auth.AuthService;
 import org.springframework.http.HttpStatus;
@@ -51,6 +52,31 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of(
                             "error", "Authentication failed",
+                            "message" , e.getMessage()
+                    ));
+        }
+    }
+    @Operation(summary = "Admin register")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "the user registered successfully"),
+            @ApiResponse(responseCode = "400", description = "Validation error")
+    })
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@Validated @RequestBody RegisterRequest request ){
+        try {
+        User user = authService.register(request);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(
+                    Map.of(
+                            "message","registered successfully",
+                            "username",user.getUsername(),
+                            "role" , user.getRole()
+                    )
+            );
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of(
+                            "error", "register failed",
                             "message" , e.getMessage()
                     ));
         }
