@@ -2,12 +2,14 @@ package org.example.smartshop.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.example.smartshop.enums.PaymentStatus;
 import org.example.smartshop.enums.TypePaiement;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(name = "payments")
