@@ -12,12 +12,17 @@ import org.mapstruct.ReportingPolicy;
 public interface ClientMapper {
 
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "role" ,source = "role")
-    @Mapping(target = "password" ,source = "password")
     @Mapping(target = "username" ,source = "username")
     @Mapping(target = "email" ,source = "email")
     @Mapping(target = "name" ,source = "name")
     Client toEntity(ClientRequest dto);
 
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "username", source = "username")
+    @Mapping(target = "email", source = "email")
+    @Mapping(target = "customerTier", source = "customerTier")
+    @Mapping(target = "totalOrders", source = "totalOrders")
+    @Mapping(target = "totalSpent", source = "totalSpent")
     ClientResponse toResponse(Client entity);
 }
