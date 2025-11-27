@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 public class ClientResponse {
     private String id;
     private String name;
+    private String username;
     private String email;
     private CustomerTier customerTier;
     private Integer totalOrders;
