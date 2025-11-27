@@ -3,7 +3,6 @@ package org.example.smartshop.dto.client;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import org.example.smartshop.enums.UserRole;
 
 @Data
 public class ClientRequest {

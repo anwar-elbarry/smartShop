@@ -3,6 +3,7 @@ package org.example.smartshop.controller.client;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.smartshop.dto.client.ClientRequest;
 import org.example.smartshop.dto.client.ClientResponse;
@@ -19,8 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.Optional;
 
+@Tag(name = "Clients" , description = "Client management APIs")
 @RestController
-@RequestMapping("/api/client")
+@RequestMapping("/api/clients")
 @RequiredArgsConstructor
 public class ClientControllerImpl implements ClientController{
     private final ClientService clientService;
@@ -31,7 +33,7 @@ public class ClientControllerImpl implements ClientController{
             @ApiResponse(responseCode = "201", description = "Client Created Successfully"),
             @ApiResponse(responseCode = "400", description = "Validation error")
     })
-    @PostMapping("/create")
+    @PostMapping
     @Override
     public ResponseEntity<?> create(@Validated @RequestBody ClientRequest request){
           ClientResponse response = clientService.create(request);
