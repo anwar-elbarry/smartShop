@@ -31,10 +31,10 @@ public class Client extends User{
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private CustomerTier customerTier = CustomerTier.BASIC;
+    private CustomerTier customerTier;
 
-    private Integer totalOrders = 0;
-    private BigDecimal totalSpent = BigDecimal.valueOf(0.0);
+    private Integer totalOrders;
+    private BigDecimal totalSpent;
 
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
     private List<Order> commandHistory;

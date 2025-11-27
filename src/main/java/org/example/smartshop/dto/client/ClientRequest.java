@@ -19,6 +19,4 @@ public class ClientRequest {
 
     @NotBlank(message = "Le nom d'utilisateur est requis")
     private String username;
-
-    private UserRole role = UserRole.CLIENT;
 }

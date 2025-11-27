@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Product extends IsDeleted{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -29,7 +29,4 @@ public class Product {
 
     @Column(nullable = false)
     private Integer stock;
-
-    @Column(nullable = false)
-    private boolean isDeleted = false;
 }

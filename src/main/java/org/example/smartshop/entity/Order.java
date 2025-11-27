@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class Order extends IsDeleted{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;

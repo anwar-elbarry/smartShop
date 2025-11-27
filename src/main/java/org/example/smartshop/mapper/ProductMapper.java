@@ -10,7 +10,6 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface ProductMapper {
 
-    @Mapping(target = "isDeleted", ignore = true)
     @Mapping(target = "id", ignore = true)
     Product toEntity(ProductRequest request);
 

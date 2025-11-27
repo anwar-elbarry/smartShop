@@ -14,7 +14,7 @@ import org.example.smartshop.enums.UserRole;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class User {
+public class User extends IsDeleted{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "payments")
-public class Payment {
+public class Payment extends IsDeleted{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;

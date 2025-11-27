@@ -2,6 +2,7 @@ package org.example.smartshop.dto.order;
 
 import lombok.Builder;
 import lombok.Data;
+import org.example.smartshop.dto.orderItem.OrderItemResponse;
 import org.example.smartshop.enums.OrderStatus;
 
 import java.math.BigDecimal;
@@ -24,5 +25,5 @@ public class OrderResponse {
     private BigDecimal totalTTC;
     private BigDecimal montantRestant; // Important pour savoir si on peut valider
 
-    private List<OrderResponse> items;
+    private List<OrderItemResponse> items;
 }
