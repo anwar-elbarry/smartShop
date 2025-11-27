@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem {
+public class OrderItem  extends IsDeleted{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
