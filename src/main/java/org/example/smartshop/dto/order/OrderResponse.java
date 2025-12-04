@@ -25,5 +25,5 @@ public class OrderResponse {
     private BigDecimal totalTTC;
     private BigDecimal montantRestant; // Important pour savoir si on peut valider
 
-    private List<OrderItemResponse> items;
+    private List<OrderItemResponse> orderItems;
 }
