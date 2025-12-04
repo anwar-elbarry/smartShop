@@ -157,5 +157,13 @@ public class OrderServiceImpl implements OrderService{
         }
     }
 
+    @Override
+    public void cancele(String orderId){
+        Order order = orderRepository.findById(orderId).orElseThrow(
+                ()-> new ResourceNotFoundException("Order",orderId)
+        );
+        order.setStatut(OrderStatus.CANCELED);
+        orderRepository.save(order);
+    }
 }
 
