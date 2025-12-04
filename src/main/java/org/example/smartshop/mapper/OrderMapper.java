@@ -15,7 +15,6 @@ public interface OrderMapper {
         @Mapping(target = "client.id", source = "clientId")
         Order toEntity(OrderRequest orderRequest);
 
-        @Mapping(target = "items", source = "orderItems")
         @Mapping(target = "clientName", source = "client.name")
         @Mapping(target = "clientId", source = "client.id")
         OrderResponse toResponse(Order entity);
