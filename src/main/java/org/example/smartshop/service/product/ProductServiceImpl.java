@@ -7,6 +7,7 @@ import org.example.smartshop.dto.product.ProductUpdate;
 import org.example.smartshop.entity.Product;
 import org.example.smartshop.exception.ResourceNotFoundException;
 import org.example.smartshop.mapper.ProductMapper;
+import org.example.smartshop.repository.OrderItemRepository;
 import org.example.smartshop.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -74,4 +75,5 @@ public class ProductServiceImpl implements ProductService{
     public boolean existByname(String name){
         return productRepository.existsProductByNom(name);
     }
+
 }
