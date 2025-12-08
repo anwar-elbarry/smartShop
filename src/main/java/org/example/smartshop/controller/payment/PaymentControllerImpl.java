@@ -5,9 +5,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.smartshop.dto.payment.PaymentRequest;
 import org.example.smartshop.dto.payment.PaymentResponse;
+import org.example.smartshop.dto.payment.UpdatePaymentStatusRequest;
 import org.example.smartshop.service.payment.PaymentService;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
@@ -62,14 +64,8 @@ public class PaymentControllerImpl implements PaymentControlller{
     })
     @GetMapping("/order/{orderId}")
     @Override
-    public ResponseEntity<?> getOrderPayments(@PathVariable String orderId) {
-        PaymentResponse response = paymentService.getOrderPayments(orderId);
-        return ResponseEntity.ok(
-                Map.of(
-                        "message", "Order payments retrieved successfully",
-                        "data", response
-                )
-        );
+    public ResponseEntity<Page<PaymentResponse>> getOrderPayments(@PathVariable String orderId,@ParameterObject Pageable pageable) {
+        return ResponseEntity.ok(paymentService.getOrderPayments(orderId,pageable));
     }
 
     @Operation(summary = "Check if an order is fully paid")
@@ -81,5 +77,26 @@ public class PaymentControllerImpl implements PaymentControlller{
     @Override
     public ResponseEntity<Boolean> isOrderFullyPaid(@PathVariable String orderId) {
         return ResponseEntity.ok(paymentService.isOrderFullyPaid(orderId));
+    }
+
+    @Operation(summary = "Update payment status",
+            description = "Update the status of a payment (EN_ATTENTE, ENCAISSE, REJETE)")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Payment status updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid status transition or missing required fields"),
+            @ApiResponse(responseCode = "404", description = "Payment not found")
+    })
+    @PutMapping("/{paymentId}/status")
+    public ResponseEntity<PaymentResponse> updatePaymentStatus(@PathVariable String paymentId, @Valid @RequestBody UpdatePaymentStatusRequest request) {
+
+        paymentService.validateStatusUpdateRequest(request);
+
+        PaymentResponse response = paymentService.updatePaymentStatus(
+                paymentId,
+                request.getNewStatus(),
+                request.getEncaissementDate()
+        );
+
+        return ResponseEntity.ok(response);
     }
 }
