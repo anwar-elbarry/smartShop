@@ -1,5 +1,6 @@
 package org.example.smartshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
@@ -45,6 +46,7 @@ public class Order extends IsDeleted{
     private List<OrderItem> orderItems;
 
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonManagedReference("order-payments")
     private List<Payment> payments;
 
 }
