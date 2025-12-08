@@ -4,30 +4,28 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+
+import org.example.smartshop.enums.TypePaiement;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-@SuperBuilder
-@EqualsAndHashCode
+import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
 public class PaymentRequest {
     @NotNull
     private String orderId;
-
-    @NotNull
     private Integer numeroPaiement;
-
     @NotNull
     @Positive
     private BigDecimal montant;
-
-    @NotNull
-    private String datePaiement;
-
-    private LocalDateTime dateEncaissement;
+    private LocalDate dateEncaissement;
+    private TypePaiement typePaiement;
+    private String numeroCheque;
+    private String bank;
+    private LocalDate chequeEcheance;
+    private String reference;
+    private String recu;
 }
