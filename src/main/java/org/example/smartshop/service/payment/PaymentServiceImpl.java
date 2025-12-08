@@ -36,6 +36,7 @@ public class PaymentServiceImpl implements PaymentService{
     private final ClientService clientService;
 
 
+    @Transactional
     @Override
     public PaymentResponse processPayment(PaymentRequest request){
         Order order = orderRepository.findById(request.getOrderId())
@@ -58,7 +59,7 @@ public class PaymentServiceImpl implements PaymentService{
         }
 
         Payment savedPayment = paymentRepository.save(payment);
-        updateOrderPaymentStatus(order, payment.getMontant(), payment.getStatus());
+        updateOrderPaymentStatus(order, payment.getMontant());
 
         return paymentMapper.toResponse(savedPayment);
     }
@@ -105,7 +106,7 @@ public class PaymentServiceImpl implements PaymentService{
     }
 
     @Transactional
-    protected void updateOrderPaymentStatus(Order order, BigDecimal paymentAmount,PaymentStatus paymentStatus) {
+    protected void updateOrderPaymentStatus(Order order, BigDecimal paymentAmount) {
         // Pour les paiements encaissés
         BigDecimal newRemainingAmount = order.getMontantRestant().subtract(paymentAmount)
                 .setScale(2, RoundingMode.HALF_UP);
@@ -153,7 +154,7 @@ public class PaymentServiceImpl implements PaymentService{
 
         // Mettre à jour le statut de la commande si le paiement est maintenant encaissé
         if (newStatus == PaymentStatus.ENCAISSE) {
-            updateOrderPaymentStatus(payment.getOrder(), payment.getMontant(), newStatus);
+            updateOrderPaymentStatus(payment.getOrder(), payment.getMontant());
         }
 
         return paymentMapper.toResponse(updatedPayment);
