@@ -16,5 +16,4 @@ public interface ClientService {
     Page<ClientResponse> getAll(Pageable pageable);
     Optional<ClientResponse> getById(String clientId);
     void updateClientLoyalty(String clientId, BigDecimal orderAmount);
-
 }
