@@ -26,7 +26,6 @@ public class ClientServiceImpl implements ClientService{
 
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
-    private final OrderMapper orderMapper;
 
     @Override
     public ClientResponse create(ClientRequest request) {
