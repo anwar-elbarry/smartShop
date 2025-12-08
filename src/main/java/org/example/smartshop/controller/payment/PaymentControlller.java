@@ -9,6 +9,6 @@ import org.springframework.http.ResponseEntity;
 public interface PaymentControlller {
     ResponseEntity<?> processPayment(PaymentRequest request);
     ResponseEntity<Page<PaymentResponse>> getAllPayments(Pageable pageable, String clientId);
-    ResponseEntity<?> getOrderPayments(String orderId);
+    ResponseEntity<Page<PaymentResponse>> getOrderPayments(String orderId,Pageable pageable);
     ResponseEntity<Boolean> isOrderFullyPaid(String orderId);
 }
