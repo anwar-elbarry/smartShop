@@ -18,5 +18,6 @@ public interface PaymentMapper {
     Payment toEntity(PaymentRequest paymentRequest);
 
     @Mapping(target = "orderId", source = "order.id")
+    @Mapping(target = "status", source = "status")
     PaymentResponse toResponse(Payment entity);
 }
