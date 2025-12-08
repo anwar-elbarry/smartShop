@@ -8,6 +8,7 @@ import org.example.smartshop.entity.Order;
 import org.example.smartshop.entity.Payment;
 import org.example.smartshop.enums.OrderStatus;
 import org.example.smartshop.enums.PaymentStatus;
+import org.example.smartshop.exception.InvalidOperationException;
 import org.example.smartshop.exception.ResourceNotFoundException;
 import org.example.smartshop.mapper.PaymentMapper;
 import org.example.smartshop.repository.OrderRepository;
