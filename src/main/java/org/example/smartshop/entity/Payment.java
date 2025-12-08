@@ -1,5 +1,6 @@
 package org.example.smartshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,7 +8,7 @@ import org.example.smartshop.enums.PaymentStatus;
 import org.example.smartshop.enums.TypePaiement;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -20,6 +21,7 @@ public class Payment extends IsDeleted{
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "order_id")
+    @JsonBackReference("order-payments")
     private Order order;
 
     @Column(nullable = false)
@@ -34,14 +36,14 @@ public class Payment extends IsDeleted{
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private PaymentStatus status = PaymentStatus.EN_ATTENTE;
+    private PaymentStatus status;
 
-    private LocalDateTime datePaiement;
-    private LocalDateTime dateEncaissement;
+    private LocalDate datePaiement;
+    private LocalDate dateEncaissement;
 
     private String recu;
     private String numeroCheque;
-    private String banque;
-    private LocalDateTime chequeEcheance;
+    private String bank;
+    private LocalDate chequeEcheance;
     private String reference;
 }
