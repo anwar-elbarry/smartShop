@@ -385,3 +385,7 @@ Bonnes pratiques pour la présentation
 - Ouvrez `src/main/resources/application.yaml` et fournissez un `application-example.yaml` pour faciliter le démarrage en local (H2 si nécessaire).
 - Préparez une collection Postman basée sur les endpoints exposés et incluez des exemples pour les scénarios métier (création commande + paiements fractionnés + confirmation).
 - Montrez un diagramme de classes simple (entités principales et relations) pour appuyer la structure du code.
+
+## Présentation
+
+- **Lien vers la présentation Canva** : [Voir la présentation](https://www.canva.com/design/DAG68pxiBWw/sLmXUfXvrpQEUoTE3BhaDQ/edit?ui=e30)
