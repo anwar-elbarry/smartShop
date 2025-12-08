@@ -11,4 +11,5 @@ public interface OrderService {
     OrderResponse create(OrderRequest request);
     Page<OrderResponse> getAll(Pageable pageable);
     OrderResponse getById(String orderId);
+    void cancele(String orderId);
 }

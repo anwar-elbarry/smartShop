@@ -1,7 +1,9 @@
 package org.example.smartshop.dto.order;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.smartshop.dto.orderItem.OrderItemResponse;
 import org.example.smartshop.enums.OrderStatus;
 
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderResponse {
     private String id;
     private String clientId;

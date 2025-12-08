@@ -1,25 +1,30 @@
 package org.example.smartshop.dto.payment;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
-import org.example.smartshop.entity.Order;
 import org.example.smartshop.enums.TypePaiement;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-@SuperBuilder
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class PaymentResponse {
     private String id;
-    private Order order;
+    private String orderId;
     private Integer numeroPaiement;
     private BigDecimal montant;
     private String datePaiement;
-    private LocalDateTime dateEncaissement;
+    private LocalDate dateEncaissement;
     private TypePaiement typePaiement;
+    private String recu;
+    private String reference;
+    private String bank;
+    private String numeroCheque;
+    private LocalDate chequeEcheance;
+
 }

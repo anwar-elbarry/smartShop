@@ -1,5 +1,6 @@
 package org.example.smartshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -37,5 +38,6 @@ public class Client extends User{
     private BigDecimal totalSpent;
 
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    @JsonManagedReference("client-orders")
     private List<Order> commandHistory;
 }

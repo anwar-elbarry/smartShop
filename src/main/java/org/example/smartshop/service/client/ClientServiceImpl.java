@@ -1,5 +1,6 @@
 package org.example.smartshop.service.client;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.smartshop.dto.client.ClientRequest;
 import org.example.smartshop.dto.client.ClientResponse;
@@ -77,5 +78,31 @@ public class ClientServiceImpl implements ClientService{
                 () -> new ResourceNotFoundException("Client",clientId));
     }
 
+    @Override
+    @Transactional
+    public void updateClientLoyalty(String clientId, BigDecimal orderAmount) {
+        Client client = checkIfClientExist(clientId);
+
+        client.setTotalOrders(client.getTotalOrders() + 1);
+        client.setTotalSpent(client.getTotalSpent().add(orderAmount));
+
+        updateCustomerTier(client);
+
+        clientRepository.save(client);
+    }
+
+    private void updateCustomerTier(Client client) {
+        BigDecimal totalSpent = client.getTotalSpent();
+
+        if (totalSpent.compareTo(new BigDecimal("5000")) >= 0) {
+            client.setCustomerTier(CustomerTier.PLATINUM);
+        } else if (totalSpent.compareTo(new BigDecimal("2000")) >= 0) {
+            client.setCustomerTier(CustomerTier.GOLD);
+        } else if (totalSpent.compareTo(new BigDecimal("500")) >= 0) {
+            client.setCustomerTier(CustomerTier.SILVER);
+        } else {
+            client.setCustomerTier(CustomerTier.BASIC);
+        }
+    }
 
 }
