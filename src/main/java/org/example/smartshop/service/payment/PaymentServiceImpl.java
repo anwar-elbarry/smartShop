@@ -106,24 +106,23 @@ public class PaymentServiceImpl implements PaymentService{
 
     @Transactional
     protected void updateOrderPaymentStatus(Order order, BigDecimal paymentAmount,PaymentStatus paymentStatus) {
-        // Si le paiement est en attente, on ne met pas à jour le montant restant
-        if (paymentStatus == PaymentStatus.EN_ATTENTE) {
-            return;
-        }
-
-        if (paymentStatus == PaymentStatus.REJETE) {
-            return;
-        }
-
         // Pour les paiements encaissés
         BigDecimal newRemainingAmount = order.getMontantRestant().subtract(paymentAmount)
                 .setScale(2, RoundingMode.HALF_UP);
+
+        // S'assurer que le montant restant ne devient pas négatif
+        if (newRemainingAmount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new InvalidOperationException("Le montant du paiement dépasse le montant restant à payer");
+        }
+
         order.setMontantRestant(newRemainingAmount);
 
+        // Mettre à jour le statut de la commande si le montant restant est zéro
         if (newRemainingAmount.compareTo(BigDecimal.ZERO) == 0) {
             order.setStatut(OrderStatus.CONFIRMED);
             clientService.updateClientLoyalty(order.getClient().getId(), order.getTotalTTC());
         }
+
         orderRepository.save(order);
     }
 
