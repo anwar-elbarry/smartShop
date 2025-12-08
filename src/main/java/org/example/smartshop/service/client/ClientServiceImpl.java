@@ -92,13 +92,14 @@ public class ClientServiceImpl implements ClientService{
     }
 
     private void updateCustomerTier(Client client) {
+        int totalOrders = client.getTotalOrders();
         BigDecimal totalSpent = client.getTotalSpent();
 
-        if (totalSpent.compareTo(new BigDecimal("5000")) >= 0) {
+        if (totalOrders >= 20 || totalSpent.compareTo(new BigDecimal("15000")) >= 0) {
             client.setCustomerTier(CustomerTier.PLATINUM);
-        } else if (totalSpent.compareTo(new BigDecimal("2000")) >= 0) {
+        } else if (totalOrders >= 10 || totalSpent.compareTo(new BigDecimal("5000")) >= 0) {
             client.setCustomerTier(CustomerTier.GOLD);
-        } else if (totalSpent.compareTo(new BigDecimal("500")) >= 0) {
+        } else if (totalOrders >= 3 || totalSpent.compareTo(new BigDecimal("1000")) >= 0) {
             client.setCustomerTier(CustomerTier.SILVER);
         } else {
             client.setCustomerTier(CustomerTier.BASIC);
