@@ -19,6 +19,7 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final OrderItemRepository orderItemRepository;
 
     @Override
     public ProductResponse create(ProductRequest request) {
@@ -58,8 +59,12 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void delete(String productId) {
        Product product = checkIfProductExist(productId);
-       product.delete();
-       productRepository.save(product);
+       if (orderItemRepository.existsByProduitId(productId)){
+           product.delete();
+           productRepository.save(product);
+       }else {
+           productRepository.deleteById(productId);
+       }
     }
 
     public Product checkIfProductExist(String productId){
