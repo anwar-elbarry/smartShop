@@ -51,7 +51,10 @@ public class OrderServiceImpl implements OrderService{
         order.setDate(LocalDateTime.now());
         order.setTotalTTC(costBreakdown.getTotalTTC());
         Order saved = orderRepository.save(order);
-        createOrderItems(request.getOrderItems(),saved);
+
+        if (saved.getStatut() != OrderStatus.REJECTED) {
+            createOrderItems(request.getOrderItems(), saved);
+        }
         return orderMapper.toResponse(saved);
     }
 
@@ -140,6 +143,9 @@ public class OrderServiceImpl implements OrderService{
     public void createOrderItems(List<OrderItemRequest> requestList, Order order) {
         for (OrderItemRequest request : requestList) {
             OrderItem orderItem = orderItemMapper.toEntity(request);
+            if (orderItem == null) {
+                throw new IllegalStateException("Failed to map OrderItemRequest to OrderItem");
+            }
             Product product = productRepository.findById(request.getProductId())
                     .orElseThrow(() -> new ResourceNotFoundException("Product", request.getProductId()));
 
