@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.smartshop.enums.PaymentStatus;
 import org.example.smartshop.enums.TypePaiement;
 
 import java.math.BigDecimal;
@@ -26,5 +27,6 @@ public class PaymentResponse {
     private String bank;
     private String numeroCheque;
     private LocalDate chequeEcheance;
+    private PaymentStatus status;
 
 }
