@@ -85,7 +85,7 @@ Enums principaux
 
 Stack technique
 
-- Java 8+
+- Java 21
 - Spring Boot
 - Spring Data JPA (Hibernate)
 - PostgreSQL ou MySQL (configurable)
@@ -96,19 +96,6 @@ Stack technique
 - Authentification : HTTP Session (login/logout)
 
 Exécution & configuration (local)
-
-1. Pré-requis : Java 8+, Maven, une base PostgreSQL/MySQL accessible.
-2. Configurer les paramètres de connexion DB et la TVA dans `src/main/resources/application.yaml`.
-
-Exemples de commandes (PowerShell)
-
-```powershell
-# Lancer l'application via Maven
-mvn spring-boot:run
-
-# Ou exécuter le jar construit
-java -jar target/SmartShop-0.0.1-SNAPSHOT.jar
-```
 
 Tests & démonstration
 
@@ -121,39 +108,6 @@ Tests & démonstration
   - Ajout de paiements (paiements fractionnés)
   - Endpoints admin pour valider/annuler/rejeter commandes
 
-Exemples métier rapides
-
-- Fidélité : après X commandes confirmées ou Y DH cumulés, le niveau du client change et les remises s'appliquent automatiquement aux commandes futures si le sous-total atteint le seuil.
-- Paiement fractionné : tant que montant_restant > 0, une commande reste en PENDING. Dès que montant_restant = 0, un ADMIN peut la passer à CONFIRMED.
-
-Livrables attendus
-
-- Lien GitHub du code source complet
-- Diagramme de classes UML (image)
-- [Backlog / projet JIRA](https://elbarryanwar37-1758017080778.atlassian.net/jira/core/projects/SMRTSHP/board?filter=&groupBy=status)
-- README clair (celui-ci)
-
-Checklist pour la soutenance
-
-- [ ] Le projet démarre sans erreur et se connecte à la base
-- [ ] Validations (stock, TVA, remises) fonctionnelles
-- [ ] Erreurs renvoyées au format JSON cohérent
-- [ ] Architecture Controller-Service-Repository-DTO-Mapper claire
-- [ ] Tests unitaires (couverture minimale des règles métier)
-- [ ] Collection Postman ou Swagger disponible
-
-Prochaines actions proposées
-
-- Je peux vérifier le build du projet (mvn -DskipTests package) pour reproduire l'erreur mentionnée précédemment et corriger les imports manquants ou les packages absents.
-- Si vous voulez, j'inspecte maintenant l'erreur : `Payment.java:6:35 java: package org.example.smartshop.enums does not exist` et corrige le fichier source ou la structure des packages.
-
-Contact
-
-Pour toute question ou ajout au README, dites-moi ce que vous souhaitez que j'ajoute (diagramme, collection Postman, exemples d'API, etc.).
-
----
-
-(Ce README synthétise le cahier des charges fourni et propose les instructions de base pour exécuter et tester l'API.)
 
 ## Documentation API (endpoints découverts dans le code)
 
@@ -357,5 +311,5 @@ Bonnes pratiques pour la présentation
 - Montrez un diagramme de classes simple (entités principales et relations) pour appuyer la structure du code.
 
 ## Présentation
-
 - **Lien vers la présentation Canva** : [Voir la présentation](https://www.canva.com/design/DAG68pxiBWw/sLmXUfXvrpQEUoTE3BhaDQ/edit?ui=e30)
+- **Lien vers le tableau de bord JIRA** : [Backlog / projet JIRA](https://elbarryanwar37-1758017080778.atlassian.net/jira/core/projects/SMRTSHP/board?filter=&groupBy=status)
