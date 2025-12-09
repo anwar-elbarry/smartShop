@@ -84,9 +84,9 @@ public class OrderControllerImpl implements OrderController {
 
     @Operation(summary = "Get orders by status")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved orders By the specified Status")
-    @GetMapping("/status")
+    @GetMapping("/status/{status}")
     @Override
-    public ResponseEntity<Page<OrderResponse>> findByStatus(@RequestBody @Validated OrderStatus status, @ParameterObject Pageable pageable){
+    public ResponseEntity<Page<OrderResponse>> findByStatus(@PathVariable @Validated OrderStatus status, @ParameterObject Pageable pageable){
         return ResponseEntity.ok(orderService.findByStatus(status,pageable));
     }
 }
