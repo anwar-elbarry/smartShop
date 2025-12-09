@@ -21,7 +21,6 @@ public class Payment extends IsDeleted{
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "order_id")
-    @JsonBackReference("order-payments")
     private Order order;
 
     @Column(nullable = false)
