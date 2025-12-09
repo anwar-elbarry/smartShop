@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.smartshop.dto.order.OrderRequest;
 import org.example.smartshop.dto.order.OrderResponse;
+import org.example.smartshop.enums.OrderStatus;
 import org.example.smartshop.service.order.OrderService;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
@@ -69,5 +70,23 @@ public class OrderControllerImpl implements OrderController {
     public ResponseEntity<Page<OrderResponse>> getAll(@ParameterObject Pageable pageable) {
         Page<OrderResponse> response = orderService.getAll(pageable);
         return ResponseEntity.ok(response);
+    }
+
+
+    @Operation(summary = "Get orders by client ID")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved orders for the specified client")
+    @ApiResponse(responseCode = "404", description = "Client not found")
+    @GetMapping("/clinet/{clientId}")
+    @Override
+    public ResponseEntity<Page<OrderResponse>> getByClientId(@PathVariable String clientId,@ParameterObject Pageable pageable){
+        return ResponseEntity.ok(orderService.findByClientId(clientId,pageable));
+    }
+
+    @Operation(summary = "Get orders by status")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved orders By the specified Status")
+    @GetMapping("/status")
+    @Override
+    public ResponseEntity<Page<OrderResponse>> findByStatus(@RequestBody @Validated OrderStatus status, @ParameterObject Pageable pageable){
+        return ResponseEntity.ok(orderService.findByStatus(status,pageable));
     }
 }
