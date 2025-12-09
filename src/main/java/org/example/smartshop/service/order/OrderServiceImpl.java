@@ -171,5 +171,18 @@ public class OrderServiceImpl implements OrderService{
         order.setStatut(OrderStatus.CANCELED);
         orderRepository.save(order);
     }
+
+    @Override
+    public Page<OrderResponse> findByClientId(String clientId,Pageable pageable) {
+        Client client = clientRepository.findById(clientId).orElseThrow(
+                () -> new  ResourceNotFoundException("Client",clientId)
+        );
+       return orderRepository.findByClientId(client.getId(),pageable).map(orderMapper::toResponse);
+    }
+
+    @Override
+    public Page<OrderResponse> findByStatus(OrderStatus status, Pageable pageable) {
+        return orderRepository.findByStatut(status,pageable).map(orderMapper::toResponse);
+    }
 }
 
