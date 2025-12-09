@@ -130,7 +130,7 @@ Livrables attendus
 
 - Lien GitHub du code source complet
 - Diagramme de classes UML (image)
-- Backlog / projet JIRA
+- [Backlog / projet JIRA](https://elbarryanwar37-1758017080778.atlassian.net/jira/core/projects/SMRTSHP/board?filter=&groupBy=status)
 - README clair (celui-ci)
 
 Checklist pour la soutenance
@@ -257,36 +257,6 @@ Pour toute question ou ajout au README, dites-moi ce que vous souhaitez que j'aj
 - PUT /api/payments/{paymentId}/status
   - Mise à jour du statut d'un paiement (UpdatePaymentStatusRequest)
   - Réponse : 200 + updated payment
-
-
-## Exemple d'appels (PowerShell / curl)
-
-1) Login (récupère la session cookie)
-
-```powershell
-curl -i -X POST "http://localhost:8080/api/auth/login" -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}' -c cookies.txt
-```
-
-2) Créer un client (en utilisant le cookie de session)
-
-```powershell
-curl -X POST "http://localhost:8080/api/clients" -H "Content-Type: application/json" -d '{"name":"ACME","email":"contact@acme.test"}' -b cookies.txt
-```
-
-3) Créer un produit
-
-```powershell
-curl -X POST "http://localhost:8080/api/products" -H "Content-Type: application/json" -d '{"name":"Laptop","prixUnitaireHT":10000,"stockDisponible":50}' -b cookies.txt
-```
-
-4) Créer une commande (OrderRequest simplifié)
-
-```powershell
-curl -X POST "http://localhost:8080/api/orders" -H "Content-Type: application/json" -d '{"clientId":"<clientId>","items":[{"productId":"<productId>","quantity":2}]}' -b cookies.txt
-```
-
-Remplacez <clientId> et <productId> par des ids réels renvoyés précédemment.
-
 
 ## Swagger / Documentation interactive
 
